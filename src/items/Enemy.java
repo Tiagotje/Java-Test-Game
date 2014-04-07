@@ -14,10 +14,17 @@ public class Enemy {
 	static Random r = new Random();			//New random object r
 	public int xSpeed; public int ySpeed = 0;
 	Player p = Game.p;
+	public int side;
 	
 	public Enemy(){
-		x = r.nextInt(Game.ScreenX-30);
-		y = 0;   l = 30;    w = 30;
+		side = r.nextInt(4);			//Side  0=up, 1=left, 2=down, 3=right
+		switch(side){
+		case 0: x = r.nextInt(Game.ScreenX-30); y=0; break;
+		case 1: y = r.nextInt(Game.ScreenY-30); x=0; break;
+		case 2: x = r.nextInt(Game.ScreenX-30); y=Game.ScreenY-30; break;
+		case 3: y = r.nextInt(Game.ScreenY-30); x=Game.ScreenX-30; break;
+		}
+		l = 30;    w = 30;
 		color = Color.RED;
 		t = 1;
 		xSpeed = r.nextInt(15) - 8;
